@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>  \\Запускал в терминале из workshop1
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <cmath>
