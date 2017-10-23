@@ -1,4 +1,4 @@
-add_executable(sfml2. 1 main.cpp)
+add_executable(sfml2.1 main.cpp)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 
