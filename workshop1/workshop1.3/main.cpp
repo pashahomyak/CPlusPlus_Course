@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>  //Запускал в терминале из workshop1.
+﻿#include <SFML/Graphics.hpp>  
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <cmath>
@@ -10,7 +10,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "cat", sf::Style::Default, settings);
 
 	sf::Texture texture;
-	texture.loadFromFile("./workshop1.3/cat.png");
+	texture.loadFromFile("./cat.png");
 
 	sf::Sprite sprite;
 	sprite.setTexture(texture);
