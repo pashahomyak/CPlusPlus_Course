@@ -19,7 +19,7 @@ struct Laser
 {
 	sf::Texture texture;
 	sf::Sprite sprite;
-	sf::Vector2f ClickPosition;
+	sf::Vector2f clickPosition;
 	sf::Vector2f position;
 };
 
@@ -40,11 +40,11 @@ void init(Cat& cat, Laser& laser)
 	laser.sprite.setOrigin(laser.texture.getSize().x / 2, laser.texture.getSize().y / 2);
 }
 
-void onMouseClick(sf::Event::MouseButtonEvent& event, sf::Vector2f& ClickPosition)
+void onMouseClick(sf::Event::MouseButtonEvent& event, sf::Vector2f& clickPosition)
 {
-	ClickPosition = { float(event.x), float(event.y) };
+	clickPosition = { float(event.x), float(event.y) };
 }
-void pollEvents(sf::RenderWindow& window, sf::Vector2f& ClickPosition)
+void pollEvents(sf::RenderWindow& window, sf::Vector2f& clickPosition)
 {
 	sf::Event event;
 	while (window.pollEvent(event))
@@ -55,7 +55,7 @@ void pollEvents(sf::RenderWindow& window, sf::Vector2f& ClickPosition)
 			window.close();
 			break;
 		case sf::Event::MouseButtonPressed:
-			onMouseClick(event.mouseButton, ClickPosition);
+			onMouseClick(event.mouseButton, clickPosition);
 			break;
 		default:
 			break;
@@ -77,11 +77,11 @@ void updateCatElements(Cat& cat, Laser& laser)
 	cat.sprite.setScale(cat.scale);
 }
 
-void update(const sf::Vector2f& ClickPosition, Cat& cat, Laser& laser, float deltaTime)
+void update(const sf::Vector2f& clickPosition, Cat& cat, Laser& laser, float deltaTime)
 {
-	const sf::Vector2f delta = ClickPosition - cat.position;
+	const sf::Vector2f delta = clickPosition - cat.position;
 	float angle = atan2(delta.y, delta.x);
-	laser.position = ClickPosition;
+	laser.position = clickPosition;
 
 	if (angle < 0)
 	{
@@ -113,7 +113,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Cat and laser");
 	sf::Clock clock;
 
-	sf::Vector2f ClickPosition = { 400, 300 };
+	sf::Vector2f clickPosition = { 400, 300 };
 
 	Cat cat;
 	Laser laser;
@@ -122,9 +122,9 @@ int main()
 
 	while (window.isOpen())
 	{
-		pollEvents(window, ClickPosition);
+		pollEvents(window, clickPosition);
 		float deltaTime = clock.restart().asSeconds();
-		update(ClickPosition, cat, laser, deltaTime);
+		update(clickPosition, cat, laser, deltaTime);
 		redrawFrame(window, cat, laser);
 	}
 }
